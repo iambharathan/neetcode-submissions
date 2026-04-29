@@ -1,0 +1,34 @@
+class Solution {
+
+    public String encode(List<String> strs) {
+        StringBuilder sb = new StringBuilder();
+        for(String str : strs){
+            sb.append(str.length()).append('#').append(str);
+        }
+        return sb.toString();
+    }
+
+    public List<String> decode(String str) {
+        List<String> result = new ArrayList<>();
+        //read till # to find length
+        int i = 0;
+
+        while(i<str.length()){
+            int j = i;
+            while(str.charAt(j) != '#'){
+                j++;
+            }
+            int length = Integer.parseInt(str.substring(i,j));
+
+            //extract the word
+            String word = str.substring(j+1,j+1+length);
+            result.add(word);
+            i = j+1+length;
+
+
+        }
+        return result;
+
+        
+     }
+}
